@@ -1,0 +1,72 @@
+.section-form {
+  text-align: center;
+  width: 40%;
+  background-color: #bc6ff1;
+  position: absolute;
+  padding: 15px;
+  top: 50%;
+
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.section-form h2 {
+  font-weight: bold;
+  padding: 20px 0;
+  text-transform: capitalize;
+  color: #52057b;
+  font-size: 50px;
+  letter-spacing: 2px;
+}
+input {
+  font-size: 20px;
+  display: block;
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;
+  height: 40px;
+  outline: 0;
+  border: 1px solid #ddd;
+  font-family: "Oswald", "Sans-serif";
+}
+input[type="submit"] {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  height: auto;
+  transition: opacity 0.2s;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
+}
+.animation1 ul {
+  display: none;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.animation1 ul li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(149, 149, 221);
+  animation-name: requestWatit;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 5;
+  margin-left: 1px;
+}
+
+@keyframes requestWatit {
+  0%{background-color: #52057b;}
+  50%{
+    background-color: antiquewhite;
+  }
+  100%{background-color: #bc6ff1;}
+  
+  
+}
