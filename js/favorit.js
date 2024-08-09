@@ -1,7 +1,14 @@
 let contentItem = document.querySelector(".products .container");
 //define proarty
-let productfavorit=JSON.parse(localStorage.getItem("favorit"))
+let productfavorit = JSON.parse(localStorage.getItem("favorit"));
 function drawUi(productData) {
+  if (JSON.parse(localStorage.getItem("favorit")).length == 0) {
+    let nopro = document.querySelector(".no-products");
+    let nc = document.querySelector(".ncNew");
+    nc.style.display = "block";
+    nopro.innerHTML = "there is no products , please ?! sure if , you have ";
+  }
+
   let productUi = productData.map(function (porductItem) {
     return ` 
     <div class="products-item">
@@ -16,7 +23,7 @@ function drawUi(productData) {
     </div>
    
     <div class="product-item-actions">
-      <button  onclick="additem(${porductItem.id})" class="add-to-cart">delet from favorit</button>
+      <button  onclick="deletFromfavorite(${porductItem.id})" class="add-to-cart">delet from favorit</button>
 
       <i id="icon")" class="far fa-heart fa-2x"><i onclick="hold(${porductItem.id})"  id="second-icon"class= "fa fa-heart" ></i></i>
     </div>
@@ -34,8 +41,6 @@ drawUi(productfavorit);
 let productsInfo = document.querySelector(".products-info");
 productsInfo.style.color = "black";
 let addToCart = document.querySelector(".add-to-cart");
-
-
 
 //?! drop down chosen item
 addToCart.addEventListener("click", additem);
@@ -114,4 +119,27 @@ function saveId(id) {
   setTimeout(() => {
     window.location = "productsDetalis.html";
   }, 100);
+}
+
+// the project function uniqe item
+function uniqeitem(arr, filtertype) {
+  let uniq = arr
+    .map((item) => item[filtertype])
+    .map((item, i, final) => final.indexOf(item) === i && i)
+    .filter((item) => arr[item])
+    .map((item) => arr[item]);
+  return uniq;
+}
+
+// delete from favorit
+
+function deletFromfavorite(id) {
+  let newstorge = JSON.parse(localStorage.getItem("favorit"));
+  if (newstorge) {
+    let filter = newstorge.filter((item) => item.id !== id);
+    console.log(filter);
+    localStorage.setItem("favorit", JSON.stringify(filter));
+    contentItem.innerHTML = "";
+    drawUi(filter);
+  }
 }

@@ -22,7 +22,7 @@ function newdraw1(addediTem) {
   }
 }
 
-newdraw1(addediTem);// DRAW DROP  DOWN MENU 
+newdraw1(addediTem); // DRAW DROP  DOWN MENU
 
 //!DRAW PRODUCTS IN MY PAGE
 function drawproductsCartUi(allproducts = []) {
