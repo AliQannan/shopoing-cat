@@ -25,7 +25,6 @@ function drawUi(productData) {
     <div class="product-item-actions">
       <button  onclick="deletFromfavorite(${porductItem.id})" class="add-to-cart">delet from favorit</button>
 
-      <i id="icon")" class="far fa-heart fa-2x"><i onclick="hold(${porductItem.id})"  id="second-icon"class= "fa fa-heart" ></i></i>
     </div>
   </div>
     `;
