@@ -188,7 +188,7 @@ let favoritItem = localStorage.getItem("favorit")
 let doc = document.getElementById("icon");
 function hold(id) {
   if (localStorage.getItem("username")) {
-    let favorititems=productData.find(item => item.id ==id)
+    let favorititems=productDB.find(item => item.id ==id)
     favoritItem = [...favoritItem, favorititems];
     favorititems.liked = true;
     let newfavorit=uniqeitem(favoritItem,"id")
@@ -196,13 +196,13 @@ function hold(id) {
     // let storageFavorititem = uniqeitem(favoritItem, "id");
     // console.log(storageFavorititem)
     localStorage.setItem("favorit", JSON.stringify(newfavorit));
-    productData.map((item) => {
+    productDB.map((item) => {
       if (item.id === favorititems.id) {
         item.liked = true;
       }
     });
-    localStorage.setItem("productsCart", JSON.stringify(productData));
-    drawUi(productData);
+    localStorage.setItem("productsCart", JSON.stringify(productDB));
+    drawUi(productDB);
   } else {
     window.location = "../login.html";
   }
