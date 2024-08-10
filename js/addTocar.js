@@ -1,6 +1,6 @@
 let productsInfo = document.querySelector(".products-info");
-let addediTem = localStorage.getItem("productsCart")
-  ? JSON.parse(localStorage.getItem("productsCart"))
+let addediTem = localStorage.getItem("addedcart")
+  ? JSON.parse(localStorage.getItem("addedcart"))
   : [];
 
 function newdraw1(addediTem) {
@@ -25,8 +25,8 @@ function newdraw1(addediTem) {
 newdraw1(addediTem); // DRAW DROP  DOWN MENU
 
 //!DRAW PRODUCTS IN MY PAGE
-function drawproductsCartUi(allproducts = []) {
-  if (JSON.parse(localStorage.getItem("productsCart")).length == 0) {
+function drawaddedcartUi(allproducts = []) {
+  if (JSON.parse(localStorage.getItem("addedcart")).length == 0) {
     let nopro = document.querySelector(".no-products");
     let nc = document.querySelector(".ncNew");
     nc.style.display = "block";
@@ -34,7 +34,7 @@ function drawproductsCartUi(allproducts = []) {
   }
 
   let products =
-    JSON.parse(localStorage.getItem("productsCart")) || allproducts;
+    JSON.parse(localStorage.getItem("addedcart")) || allproducts;
 
   let productUi = products.map(function (porductItem) {
     return ` 
@@ -63,34 +63,34 @@ function drawproductsCartUi(allproducts = []) {
   contentItem.innerHTML = productUi;
 }
 
-drawproductsCartUi();
+drawaddedcartUi();
 // function remove(id) {
 //     let productsCartUi = localStorage.getItem("productsCart");
 //     if (productsCartUi) {
 //       let items = JSON.parse(productsCartUi);
 //       let filteritems = items.filter((item) => item.id !== id);
 
-//       localStorage.setItem("productsCart", JSON.stringify(filteritems));
-//       drawproductsCartUi(filteritems);
+//       localStorage.setItem("addedcart", JSON.stringify(filteritems));
+//       drawaddedcartUi(filteritems);
 //     }
 //   }
 function remove(id) {
-  let pro = JSON.parse(localStorage.getItem("productsCart"));
+  let pro = JSON.parse(localStorage.getItem("addedcart"));
   if (pro) {
     for (let i = 0; i < pro.length; i++) {
       if (pro[i].id == id) {
         pro[i].qun -= 1;
-        localStorage.setItem("productsCart", JSON.stringify(pro));
+        localStorage.setItem("addedcart", JSON.stringify(pro));
         newdraw1(pro);
-        drawproductsCartUi();
+        drawaddedcartUi();
 
         if (pro[i].qun == 0) {
           let filter = pro.filter((item) => item.id !== id);
-          localStorage.setItem("productsCart", JSON.stringify(filter));
+          localStorage.setItem("addedcart", JSON.stringify(filter));
 
           // newdraw1(filter);
           console.log(pro[i].qun);
-          drawproductsCartUi(filter);
+          drawaddedcartUi(filter);
           newdraw1(filter);
         }
       }

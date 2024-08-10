@@ -134,9 +134,11 @@ function uniqeitem(arr, filtertype) {
 
 function deletFromfavorite(id) {
   let newstorge = JSON.parse(localStorage.getItem("favorit"));
+
+  localStorage.setItem("productsCart", JSON.stringify(productData));
   if (newstorge) {
     let filter = newstorge.filter((item) => item.id !== id);
-    console.log(filter);
+
     localStorage.setItem("favorit", JSON.stringify(filter));
     contentItem.innerHTML = "";
     drawUi(filter);
