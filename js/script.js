@@ -1,5 +1,8 @@
 let contentItem = document.querySelector(".products .container");
 let productsfa = JSON.parse(localStorage.getItem("favoriteproducts"));
+
+
+let productDB= JSON.parse(localStorage.getItem('productsCart'))
 //define proarty
 
 function drawUi(productData) {
@@ -72,7 +75,7 @@ newdraw(); //?! finish function chosen item down
 if (localStorage.getItem("username")) {
   function additem(id) {
     if (localStorage.getItem("username")) {
-      let products = productData.find((item) => item.id == id);
+      let products = productDB.find((item) => item.id == id);
       let isProductsInCart = addediTem.some((item) => item.id === products.id);
       if (isProductsInCart) {
         addediTem = addediTem.map((p) => {
@@ -135,7 +138,7 @@ function saveId(id) {
 let searchInput = document.querySelector(".search-bar input");
 
 function search(titel) {
-  let newstorage = productData.filter(
+  let newstorage = productDB.filter(
     (item) =>
       item.titel
         .split(" ")
@@ -160,7 +163,7 @@ function uniqeitem(arr, filtertype) {
   return uniq;
 }
 function searchBy(titel) {
-  let newstorage = productData.filter(
+  let newstorage = productDB.filter(
     (item) =>
       item.size
         .split(" ")
