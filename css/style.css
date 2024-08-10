@@ -283,8 +283,8 @@ nav ul li a {
 
   flex: 2;
 }
-.product-item-desc h2{
-  font-size:25px
+.product-item-desc h2 {
+  font-size: 25px;
 }
 .product-item-desc a {
   color: black;
@@ -300,67 +300,116 @@ nav ul li a {
   display: flex;
   flex-direction: column;
 }
-.search-bar{
+.search-bar {
   width: 80%;
   display: flex;
   height: 60px;
- 
- 
+
   justify-content: center;
   align-items: center;
-
-
 }
 
-
-.search-bar input{
+.search-bar input {
   border-radius: 3px;
-  box-shadow: 2px 2px 3px 1px  #e8e8e8;
+  box-shadow: 2px 2px 3px 1px #e8e8e8;
   width: 75%;
   font-size: 18px;
   padding: 5px;
   height: 35px;
-  border: 1px solid  #e8e8e8;
+  border: 1px solid #e8e8e8;
   outline: 0;
-
 }
-.parqun{
+.parqun {
   flex: 1;
-  width: 40px ;
+  width: 40px;
   justify-content: center;
   align-items: center;
   height: auto;
 }
-.qun{
+.qun {
   margin-left: auto;
-  margin-right:20px ;
+  margin-right: 20px;
   border-radius: 50%;
   color: white;
-  background-color:gray;
-  width: 20px  ;
-  height: 20px  ;
-
-
+  background-color: gray;
+  width: 20px;
+  height: 20px;
 }
-.search-by-size{
+.search-by-size {
   width: 80%;
   display: flex;
   height: 60px;
- 
- 
+
   justify-content: center;
   align-items: center;
 }
-.search-by-size input{
+.search-by-size input {
   border-radius: 3px;
-  box-shadow: 2px 2px 3px 1px  #e8e8e8;
+  box-shadow: 2px 2px 3px 1px #e8e8e8;
   width: 75%;
   font-size: 18px;
   padding: 5px;
   height: 35px;
-  border: 1px solid  #e8e8e8;
+  border: 1px solid #e8e8e8;
   outline: 0;
 }
-.quntity{
+.quntity {
   display: none;
+}
+
+.createproudct {
+  position: fixed;
+  right: 30px;
+  bottom: 20px;
+  background-color: #52057b;
+
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  display: block;
+  font-size: 20px;
+}
+.colorwhite {
+  color: white;
+}
+.colorwhite:hover {
+  opacity: 0.8;
+}
+
+.createform input {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+
+  color: #333;
+  border: 2px solid #d9d9d9;
+  margin: 10px 0;
+  /* line-height: 40px; */
+  border-radius: 6px;
+  padding: 10px
+}
+
+.createform select {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  padding: 8px;
+  color: #333;
+  border: 2px solid #d9d9d9;
+  margin: 10px 0;
+  line-height:20px;
+  border-radius: 6px;
+}
+.createform input[type="submit"]{
+  color: white;
+  background-color: #333;
+  cursor: pointer;
+
+
+}
+
+.createform input[type="submit"]:hover{
+opacity: 0.8;
 }
