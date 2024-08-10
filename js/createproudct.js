@@ -70,4 +70,9 @@ submitform.addEventListener("click", function (e) {
   let newproducts = products ? [...products, obj] : [obj];
   console.log(newproducts);
   localStorage.setItem("productsCart", JSON.stringify(newproducts));
+  setTimeout(() => {
+    window.location="../index.html"
+    
+  }, 1700);
+ 
 });
