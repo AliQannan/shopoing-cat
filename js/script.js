@@ -1,14 +1,16 @@
 let contentItem = document.querySelector(".products .container");
 let productsfa = JSON.parse(localStorage.getItem("favoriteproducts"));
-
-
-let productDB= JSON.parse(localStorage.getItem('productsCart'))
+let productDB = productData;
+productDB = JSON.parse(localStorage.getItem("productsCart")) || productData;
+localStorage.setItem("productsCart", JSON.stringify(productDB));
 //define proarty
 
 function drawUi(productData) {
   let productUi = productData.map(function (porductItem) {
     return ` 
-      <div class="products-item">
+      <div class="products-item" style= "border:${
+        porductItem.isme === "y" ? "2px solid green" : ""
+      };">
       <div class="product-item-img">
         <a href="${
           porductItem.imgUrl
@@ -23,6 +25,7 @@ function drawUi(productData) {
         <div class="quntity" style="font-weight:bold; font-size:20px "> quntity : ${
           porductItem.qun
         }</div>
+        ${porductItem.isme=="y" ? "<button id ='edit'>edit</button>": ""}
       </div>
      
       <div class="product-item-actions">
@@ -75,7 +78,7 @@ newdraw(); //?! finish function chosen item down
 if (localStorage.getItem("username")) {
   function additem(id) {
     if (localStorage.getItem("username")) {
-      let products = productDB.find((item) => item.id == id);
+      let products = productData.find((item) => item.id == id);
       let isProductsInCart = addediTem.some((item) => item.id === products.id);
       if (isProductsInCart) {
         addediTem = addediTem.map((p) => {
@@ -85,8 +88,7 @@ if (localStorage.getItem("username")) {
       } else {
         addediTem.push(products);
       }
-      // addediTem = [...addediTem, chosenItem];
-   
+
       localStorage.setItem("addedcart", JSON.stringify(addediTem));
       productsInfo.innerHTML = "";
       addediTem.forEach(
@@ -185,25 +187,55 @@ newSearch.onkeyup = function () {
 let favoritItem = localStorage.getItem("favorit")
   ? JSON.parse(localStorage.getItem("favorit"))
   : [];
-let doc = document.getElementById("icon");
-function hold(id) {
-  if (localStorage.getItem("username")) {
-    let favorititems=productDB.find(item => item.id ==id)
+  function hold(id) {
+  if (!localStorage.getItem("username")) {
+    window.location = "/login.html";
+    return;
+  }
+
+  // Find the product and check if it's already in favorites
+  let favorititems = productDB.find((item) => item.id == id);
+  let isFavorited = favoritItem.some((item) => item.id === id);
+
+  if (isFavorited) {
+    // Remove item from favorites
+    favoritItem = favoritItem.filter((item) => item.id !== id);
+    favorititems.liked = false;
+  } else {
+    // Add item to favorites
     favoritItem = [...favoritItem, favorititems];
     favorititems.liked = true;
-    let newfavorit=uniqeitem(favoritItem,"id")
-    console.log(favoritItem)
-    // let storageFavorititem = uniqeitem(favoritItem, "id");
-    // console.log(storageFavorititem)
-    localStorage.setItem("favorit", JSON.stringify(newfavorit));
-    productDB.map((item) => {
-      if (item.id === favorititems.id) {
-        item.liked = true;
-      }
-    });
-    localStorage.setItem("productsCart", JSON.stringify(productDB));
-    drawUi(productDB);
-  } else {
-    window.location = "../login.html";
   }
+
+  // Update local storage with the new favorites list
+  localStorage.setItem("favorit", JSON.stringify(uniqeitem(favoritItem, "id")));
+
+  // Update the liked status of products in the cart if necessary
+  let cartItems = JSON.parse(localStorage.getItem("productsCart")) || [];
+  cartItems = cartItems.map((item) => {
+    if (item.id === id) {
+      item.liked = favorititems.liked;
+    }
+    return item;
+  });
+  localStorage.setItem("productsCart", JSON.stringify(cartItems));
+
+  // Redraw the UI with the updated product data
+  drawUi(productDB);
+
+  
+}
+
+
+
+
+// transport form home page to edit pange
+let editBtn= document.getElementById("edit")
+
+
+editBtn.addEventListener("click",transfar)
+function transfar(){
+  setTimeout(() => {
+    window.location="./edite.html"
+  }, 700);
 }

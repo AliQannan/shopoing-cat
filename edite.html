@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Market</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+              <a class="logo" href="index.html"> Shopping Cart </a>
+          <nav>
+            <ul id="links">
+              <li><a href="login.html">sing in</a></li>
+              <li><a href="register.html">sing up </a></li>
+            </ul>
+            <ul id="logout-icon">
+              <li><a href="favorit.html">favorit</a></li>
+              <li id="user">
+              </li>
+              <li class="dropdown"><i    class="far fa-shopping-cart icon-shopping "></i>
+                <ul class="dropdown-menu">
+                  <li class="products-info"></li>
+                  <li onclick="display" ><a href="addtocart.html">viwe all products</a></li>
+                  </li>
+                </ul>
+              </li>
+                  <div  class="icon-number"></div>
+                <li>
+                <a href="register.html">logout</a>
+                </li>
+            </ul>
+          </nav>
+        </div>
+    </header>
+<section class="CreateProduct">
+    <div class="container">
+        <form  class="createform">
+            <input type="file"/>
+            <input type="text"  placeholder="title"  id="title"/>
+            <input type="text" placeholder="desc"id="desc">
+            <select name="" id="selectsize">
+                <option value=""  hidden>select size</option>
+
+                <option value="all" >all</option>
+                <option value="larg" >larg</option>
+                <option value="small" >small</option>
+                <option value="medim" >medim</option>
+
+        
+
+            </select>
+            <input type="submit" value="Update" style="background-color: #333; color:white;">
+        </form>
+    </div>
+   
+</section>
+    <div class="colorwhite"><a href="./createproduct.html"><i class="fa fa-plus  createproudct"></i></a></div>
+    <script src="js/data.js"></script>
+    <script src="./js/checkuser.js"></script>
+    <script src="./js/createproudct.js"></script>
+
+  </body>
+</html>

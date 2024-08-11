@@ -72,7 +72,6 @@ submitform.addEventListener("click", function (e) {
     imgUrl: productImg,
     qun: 1,
     liked: false,
-    isme:'y'
   };
   let newproducts = products ? [...products, obj] : [obj];
   console.log(newproducts);
