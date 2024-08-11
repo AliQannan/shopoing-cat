@@ -1,5 +1,6 @@
 let contentItem = document.querySelector(".products .container");
 //define proarty
+
 let productfavorit = JSON.parse(localStorage.getItem("favorit"));
 function drawUi(productData) {
   if (JSON.parse(localStorage.getItem("favorit")).length == 0) {
@@ -134,12 +135,24 @@ function uniqeitem(arr, filtertype) {
 
 function deletFromfavorite(id) {
   let newstorge = JSON.parse(localStorage.getItem("favorit"));
-
-  localStorage.setItem("productsCart", JSON.stringify(productData));
+  let productDB = JSON.parse(localStorage.getItem("productsCart"));
+  localStorage.setItem("productsCart", JSON.stringify(productDB));
   if (newstorge) {
     let filter = newstorge.filter((item) => item.id !== id);
 
     localStorage.setItem("favorit", JSON.stringify(filter));
+    productDB.map(function(item){
+      if(item.id == id){
+        item.liked=false;
+
+      }
+    })
+    
+    localStorage.setItem("productsCart",JSON.stringify(productDB))
+      
+    
+   
+
     contentItem.innerHTML = "";
     drawUi(filter);
   }
