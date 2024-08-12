@@ -422,10 +422,11 @@ opacity: 0.8;
   font-size: 20px;
 
   position: relative;
-  top: 30px;
+  top: 10px;
   min-width: 150px;
   height: 40px;
   display: block;
+  padding: 10px 0;
   outline: 0;
   border: 0;
 }
