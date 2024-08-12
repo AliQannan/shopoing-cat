@@ -63,12 +63,13 @@ submitform.addEventListener("click", function (e) {
     alert("you must input all items ? ");
   let productName = titelform.value;
   let productSize = selectform.value;
-
-  //   let productDesc = descform.value;
+    let productdesc=descform.value;
+   
   let obj = {
     id: products ? products.length + 1 : 1,
-    titel: productName,
+    title: productName,
     size: productSize,
+    desc:productdesc ,
     imgUrl: productImg,
     qun: 1,
     liked: false,
