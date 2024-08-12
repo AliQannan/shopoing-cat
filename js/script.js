@@ -1,6 +1,6 @@
 let contentItem = document.querySelector(".products .container");
 let productsfa = JSON.parse(localStorage.getItem("favoriteproducts"));
-let productDB = productData;
+
 productDB = JSON.parse(localStorage.getItem("productsCart")) || productData;
 localStorage.setItem("productsCart", JSON.stringify(productDB));
 //define proarty
@@ -14,18 +14,23 @@ function drawUi(productData) {
       <div class="product-item-img">
         <a href="${
           porductItem.imgUrl
-        }" target="_blank"><img src="${porductItem.imgUrl}"alt="product"  /></a>
+        }" target="_blank"><img id="imagePreview" src="${porductItem.imgUrl}" alt="Product Image Preview" style="max-width: 200px; display: block; margin-bottom: 10px;">
+        </a>
       </div>
       <div class="product-item-desc">
         <a onclick='saveId(${
           porductItem.id
-        })'><h2> ${porductItem.titel} item</h2></a>
-        <p>lorem ipsum, dolor sit amet consectetur.</p>
+        })'><h2> ${porductItem.title} item</h2></a>
+        <p>${porductItem.desc}</p>
         <span>size: ${porductItem.size}</span>
         <div class="quntity" style="font-weight:bold; font-size:20px "> quntity : ${
           porductItem.qun
         }</div>
-        ${porductItem.isme=="y" ? "<button id ='edit'>edit</button>": ""}
+        ${
+          porductItem.isme == "y"
+            ? ` <button onclick='transfar(${porductItem.id})' id ='edit'>edit</button>`
+            : ""
+        }
       </div>
      
       <div class="product-item-actions">
@@ -63,7 +68,7 @@ function newdraw() {
     addediTem.map(function (item) {
       productsInfo.innerHTML += `<div class='hero-img'>
       <img src='${item.imgUrl}'/>
-      <p id ='herop'>   ${item.titel}</p>
+      <p id ='herop'>   ${item.title}</p>
       <div class="qun">${item.qun}</div>
       </div> `;
     });
@@ -95,7 +100,7 @@ if (localStorage.getItem("username")) {
         (item) =>
           (productsInfo.innerHTML += `<div class='hero-img'>
     <img src='${item.imgUrl}'/>
-    <p id ='herop'>   ${item.titel}</p>
+    <p id ='herop'>   ${item.title}</p>
     <div class="parqun">
     <div class="qun">${item.qun}</div>
     </div>
@@ -139,15 +144,15 @@ function saveId(id) {
 
 let searchInput = document.querySelector(".search-bar input");
 
-function search(titel) {
+function search(title) {
   let newstorage = productDB.filter(
     (item) =>
-      item.titel
+      item.title
         .split(" ")
         .join("")
         .trim()
         .toLowerCase()
-        .indexOf(titel.split(" ").join("").trim().toLowerCase()) !== -1
+        .indexOf(title.split(" ").join("").trim().toLowerCase()) !== -1
   );
   drawUi(newstorage);
 }
@@ -164,14 +169,14 @@ function uniqeitem(arr, filtertype) {
     .map((item) => arr[item]);
   return uniq;
 }
-function searchBy(titel) {
+function searchBy(title) {
   let newstorage = productDB.filter(
     (item) =>
       item.size
         .split(" ")
         .join("")
         .trim()
-        .indexOf(titel.split(" ").join("").trim().toLowerCase()) !== -1
+        .indexOf(title.split(" ").join("").trim().toLowerCase()) !== -1
   );
   drawUi(newstorage);
 }
@@ -187,7 +192,7 @@ newSearch.onkeyup = function () {
 let favoritItem = localStorage.getItem("favorit")
   ? JSON.parse(localStorage.getItem("favorit"))
   : [];
-  function hold(id) {
+function hold(id) {
   if (!localStorage.getItem("username")) {
     window.location = "/login.html";
     return;
@@ -222,20 +227,18 @@ let favoritItem = localStorage.getItem("favorit")
 
   // Redraw the UI with the updated product data
   drawUi(productDB);
-
-  
 }
 
-
-
-
 // transport form home page to edit pange
-let editBtn= document.getElementById("edit")
+let editBtn = document.getElementById("edit");
 
-
-editBtn.addEventListener("click",transfar)
-function transfar(){
-  setTimeout(() => {
-    window.location="./edite.html"
-  }, 700);
+editBtn.addEventListener("click", transfar);
+function transfar(id) {
+  let editpro = productDB.find((item) => item.id === id);
+  if(editpro){
+    localStorage.setItem("editPro",JSON.stringify(editpro))
+    setTimeout(() => {
+      window.location="../edite.html"
+    }, 700);
+  }
 }
