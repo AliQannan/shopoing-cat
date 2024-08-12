@@ -17,7 +17,7 @@ function drawUi(productData) {
       <a href="${porductItem.imgUrl}" target="_blank"><img src="${porductItem.imgUrl}"alt="product"  /></a>
     </div>
     <div class="product-item-desc">
-      <a onclick='saveId(${porductItem.id})'><h2> ${porductItem.titel} item</h2></a>
+      <a onclick='saveId(${porductItem.id})'><h2> ${porductItem.title} item</h2></a>
       <p>lorem ipsum, dolor sit amet consectetur.</p>
       <span>size: ${porductItem.size}</span>
       <div class="quntity" style="font-weight:bold; font-size:20px "> quntity : ${porductItem.qun}</div>
@@ -52,7 +52,7 @@ function newdraw() {
     addediTem.map(function (item) {
       productsInfo.innerHTML += `<div class='hero-img'>
       <img src='${item.imgUrl}'/>
-      <p id ='herop'>   ${item.titel}</p>
+      <p id ='herop'>   ${item.title}</p>
       <div class="qun">${item.qun}</div>
       </div> `;
     });
@@ -81,7 +81,7 @@ if (localStorage.getItem("username")) {
       (item) =>
         (productsInfo.innerHTML += `<div class='hero-img'>
     <img src='${item.imgUrl}'/>
-    <p id ='herop'>   ${item.titel}</p>
+    <p id ='herop'>   ${item.title}</p>
     <div class="parqun">
     <div class="qun">${item.qun}</div>
     </div>
