@@ -1,82 +1,78 @@
-//verible
+// Retrieve product details from local storage
+let productDB = JSON.parse(localStorage.getItem("productsCart")) || [];
+let getproduct = JSON.parse(localStorage.getItem("editPro"));
+if (!getproduct) {
+    alert("No product details found for editing.");
+    window.location.href = "index.html"; // Redirect to a safe page
+}
 
 let selectform = document.querySelector(".createform select");
 let titelform = document.querySelector("#title");
 let descform = document.querySelector("#desc");
 let submitform = document.querySelector(".createform input[type='submit']");
-let form = document.querySelector(".createform");
-let products = JSON.parse(localStorage.getItem("productsCart")) || productData;
 let fileform = document.querySelector(".createform input[type='file']");
+let imagePreview = document.querySelector("#imagePreview"); // Added for image preview
 
-let productImg;
+let productImg = getproduct.imgUrl; // Initialize with existing image
 
-/***************create event lesiner */
+// Set form values to current product details
+titelform.value = getproduct.title;
+descform.value = getproduct.desc;
+selectform.value = getproduct.size;
+imagePreview.src = getproduct.imgUrl; // Show the current image
 
-let previwe;
-
+// Handle file selection and upload
 fileform.addEventListener("change", uploadImg);
 
-console.log(fileform);
-
-selectform.addEventListener("change", getSelectValue);
-
-let getselectvalue;
+// Handle image preview and file read
 function uploadImg() {
-  let file = this.files[0];
-  console.log(file);
-  let types = ["image/jpeg", "image/jpeg"];
-  if (types.indexOf(file.type) == -1) {
-    alert("type not support");
-    return;
-  }
-  if (file.size > 2 * 1024 * 1024) {
-    alert("your size  more than 2M");
-
-    return;
-  }
-  filereader(file);
-  previwe = URL.createObjectURL(file);
-}
-function filereader(file) {
-  let reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function () {
-    productImg = reader.result;
-  };
-  reader.onerror = function () {
-    alert("errore");
-  };
+    let file = this.files[0];
+    let types = ["image/jpeg", "image/png"];
+    if (types.indexOf(file.type) === -1) {
+        alert("Unsupported file type");
+        return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+        alert("File size exceeds 2MB");
+        return;
+    }
+    let reader = new FileReader();
+    reader.onload = function() {
+        productImg = reader.result; // Store the base64 image data
+        imagePreview.src = productImg; // Update the image preview
+    };
+    reader.onerror = function() {
+        alert("Error reading file");
+    };
+    reader.readAsDataURL(file);
 }
 
-function getSelectValue() {
-  console.log(selectform.value);
-}
+// Update the product details and save to local storage
 submitform.addEventListener("click", function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (
-    titelform.value == "" ||
-    descform.value == "" ||
-    selectform.value == "" ||
-    fileform.value == ""
-  )
-    alert("you must input all items ? ");
-  let productName = titelform.value;
-  let productSize = selectform.value;
+    if (
+        titelform.value === "" ||
+        descform.value === "" ||
+        selectform.value === "" ||
+        !productImg // Check if image is uploaded
+    ) {
+        alert("All fields are required.");
+        return;
+    }
 
-  //   let productDesc = descform.value;
-  let obj = {
-    id: products ? products.length + 1 : 1,
-    titel: productName,
-    size: productSize,
-    imgUrl: productImg,
-    qun: 1,
-    liked: false,
-  };
-  let newproducts = products ? [...products, obj] : [obj];
-  console.log(newproducts);
-  localStorage.setItem("productsCart", JSON.stringify(newproducts));
-  setTimeout(() => {
-    window.location = "../index.html";
-  }, 1700);
+    // Update product details
+    getproduct.title = titelform.value;
+    getproduct.size = selectform.value;
+    getproduct.desc = descform.value;
+    getproduct.imgUrl = productImg;
+
+    // Find and update the product in the database
+    productDB = productDB.map(product => 
+        product.id === getproduct.id ? getproduct : product
+    );
+    localStorage.setItem("productsCart", JSON.stringify(productDB));
+
+    alert("Product updated successfully!");
+    window.location.href = "index.html"; // Redirect to a list or home page
 });
