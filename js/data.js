@@ -1,30 +1,34 @@
 let productData = [
   {
     id: 1,
-    titel: "headphone",
+    title: "headphone",
     size: "larg",
     imgUrl: "../img/headphone.jpg",
     qun: 1,
+    desc: "lerom in this packg",
   },
   {
     id: 2,
-    titel: "camera phone",
+    title: "camera phone",
     size: "medim",
     imgUrl: "../img/camera.jpg",
     qun: 1,
+    desc: "lerom in this packg",
   },
   {
     id: 3,
-    titel: "lab",
+    title: "lab",
     size: "small",
     imgUrl: "../img/lab.jpg",
     qun: 1,
+    desc: "lerom in this packg",
   },
   {
     id: 4,
-    titel: "watch",
+    title: "watch",
     size: "larg",
     imgUrl: "../img/watch.jpg",
     qun: 1,
+    desc: "lerom in this packg",
   },
 ];
