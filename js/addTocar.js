@@ -9,7 +9,7 @@ function newdraw1(addediTem) {
     addediTem.map(function (item) {
       productsInfo.innerHTML += `<div class='hero-img'>
       <img src='${item.imgUrl}'/>
-      <p id ='herop'>   ${item.titel}</p>
+      <p id ='herop'>   ${item.title}</p>
       <div class="parqun">
       <div class="qun">${item.qun}</div>
       </div>
@@ -43,7 +43,7 @@ function drawaddedcartUi(allproducts = []) {
         <a href="${porductItem.imgUrl}" target="_blank"><img src="${porductItem.imgUrl}"alt="product"  /></a>
       </div>
       <div class="product-item-desc">
-        <h2> ${porductItem.titel} item</h2>
+        <h2> ${porductItem.title} item</h2>
         <p>lorem ipsum, dolor sit amet consectetur.</p>
         <span>size: ${porductItem.size}</span>
         <div style="display:block;">quntity: ${porductItem.qun}</div>
