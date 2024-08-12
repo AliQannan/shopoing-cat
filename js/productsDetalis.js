@@ -8,7 +8,7 @@ function newdraw() {
     addediTem.map(function (item) {
       productsInfo.innerHTML += `<div class='hero-img'>
         <img src='${item.imgUrl}'/>
-        <p id ='herop'>   ${item.titel}</p>
+        <p id ='herop'>   ${item.title}</p>
         <div class='icon-img'><i class= 'fa fa-check fw' >   </i><i onclick='deletItem(${item.id})' class= 'fa fa-remove fw remove' ></i></div>
         </div> `;
     });
@@ -33,7 +33,8 @@ function effect() {
 }
 
 let productIds = localStorage.getItem("productId");
-let findnew = productData.find((item) => item.id == productIds);
+let productDB = JSON.parse(localStorage.getItem("productsCart")) || productData;
+let findnew = productDB.find((item) => item.id == productIds);
 console.log(findnew.size);
 
 function drawProductsDetalis() {
@@ -46,8 +47,8 @@ function drawProductsDetalis() {
 <a href="${findnew.imgUrl}" target="_blank"><img src="${findnew.imgUrl}"alt="product"  /></a>
 
 <div class="product-item-desc">
-<a onclick='saveId(${findnew.id})'><h2> ${findnew.titel} item</h2></a>
-<p>lorem ipsum, dolor sit amet consectetur.</p>
+<a onclick='saveId(${findnew.id})'><h2> ${findnew.title} item</h2></a>
+<p>${findnew.desc}</p>
 <span>size: ${findnew.size}</span>
 </div>
 <div class="product-item-actions">
