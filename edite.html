@@ -36,32 +36,34 @@
           </nav>
         </div>
     </header>
-<section class="CreateProduct">
-    <div class="container">
-        <form  class="createform">
-            <input type="file"/>
-            <input type="text"  placeholder="title"  id="title"/>
-            <input type="text" placeholder="desc"id="desc">
-            <select name="" id="selectsize">
-                <option value=""  hidden>select size</option>
+    <section class="CreateProduct">
+        <div class="container">
+            <form  class="createform">
+                <input type="file"/>
+                <img id="imagePreview" src="" alt="Product Image Preview" style="max-width: 200px; display: block; margin-bottom: 10px;">
 
-                <option value="all" >all</option>
-                <option value="larg" >larg</option>
-                <option value="small" >small</option>
-                <option value="medim" >medim</option>
-
-        
-
-            </select>
-            <input type="submit" value="Update" style="background-color: #333; color:white;">
-        </form>
-    </div>
-   
-</section>
-    <div class="colorwhite"><a href="./createproduct.html"><i class="fa fa-plus  createproudct"></i></a></div>
+                <input type="text"  placeholder="title"  id="title"/>
+                <input type="text" placeholder="desc"id="desc">
+                <select name="" id="selectsize">
+                    <option value=""  hidden>select size</option>
+    
+                    <option value="all" >all</option>
+                    <option value="larg" >larg</option>
+                    <option value="small" >small</option>
+                    <option value="medim" >medim</option>
+    
+            
+    
+                </select>
+                <input type="submit" value="edit" style="background-color: #333; color:white;">
+            </form>
+        </div>
+       
+    </section>
+       
     <script src="js/data.js"></script>
     <script src="./js/checkuser.js"></script>
-    <script src="./js/createproudct.js"></script>
+    <script src="./js/edit.js"></script>
 
   </body>
 </html>
