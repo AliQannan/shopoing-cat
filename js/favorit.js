@@ -38,30 +38,11 @@ drawUi(productfavorit);
 //!End Draw Data
 
 //verabile for tag define
-let productsInfo = document.querySelector(".products-info");
+
 productsInfo.style.color = "black";
 let addToCart = document.querySelector(".add-to-cart");
 
 //?! drop down chosen item
-addToCart.addEventListener("click", additem);
-let addediTem = localStorage.getItem("productsCart")
-  ? JSON.parse(localStorage.getItem("productsCart"))
-  : [];
-function newdraw() {
-  if (addediTem) {
-    addediTem.map(function (item) {
-      productsInfo.innerHTML += `<div class='hero-img'>
-      <img src='${item.imgUrl}'/>
-      <p id ='herop'>   ${item.title}</p>
-      <div class="qun">${item.qun}</div>
-      </div> `;
-    });
-    let iconNumber = document.querySelector(".icon-number");
-    let allP = document.querySelectorAll(".products-info p");
-    iconNumber.innerHTML = allP.length;
-  }
-}
-newdraw(); //?! finish function chosen item down
 //?!add item
 if (localStorage.getItem("username")) {
   let allitems = [];
@@ -101,18 +82,7 @@ else {
 }
 //?!add item finish
 //added to cart
-let dorpdownNew = document.querySelector(".dropdown");
-let dorpdownMenu = document.querySelector(".dropdown-menu");
-dorpdownNew.addEventListener("click", effect);
-function effect() {
-  if (productsInfo.innerHTML !== "") {
-    if (dorpdownMenu.style.display == "block") {
-      dorpdownMenu.style.display = "none";
-    } else {
-      dorpdownMenu.style.display = "block";
-    }
-  }
-}
+
 
 function saveId(id) {
   localStorage.setItem("productId", id);

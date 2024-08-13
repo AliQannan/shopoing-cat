@@ -54,36 +54,19 @@ drawUi(JSON.parse(localStorage.getItem("productsCart")) || productData);
 //!End Draw Data
 
 //verabile for tag define
-let productsInfo = document.querySelector(".products-info");
+
 productsInfo.style.color = "black";
 let addToCart = document.querySelector(".add-to-cart");
 
 //?! drop down chosen item
 addToCart.addEventListener("click", additem);
-let addediTem = localStorage.getItem("addedcart")
-  ? JSON.parse(localStorage.getItem("addedcart"))
-  : [];
-function newdraw() {
-  if (addediTem) {
-    addediTem.map(function (item) {
-      productsInfo.innerHTML += `<div class='hero-img'>
-      <img src='${item.imgUrl}'/>
-      <p id ='herop'>   ${item.title}</p>
-      <div class="qun">${item.qun}</div>
-      </div> `;
-    });
-    let iconNumber = document.querySelector(".icon-number");
-    let allP = document.querySelectorAll(".products-info p");
-    iconNumber.innerHTML = allP.length;
-  }
-}
-newdraw(); //?! finish function chosen item down
+ //?! finish function chosen item down
 //?!add item
 
 if (localStorage.getItem("username")) {
   function additem(id) {
     if (localStorage.getItem("username")) {
-      let products = productData.find((item) => item.id == id);
+      let products = productDB.find((item) => item.id == id);
       let isProductsInCart = addediTem.some((item) => item.id === products.id);
       if (isProductsInCart) {
         addediTem = addediTem.map((p) => {
@@ -121,18 +104,7 @@ else {
 }
 //?!add item finish
 //added to cart
-let dorpdownNew = document.querySelector(".dropdown");
-let dorpdownMenu = document.querySelector(".dropdown-menu");
-dorpdownNew.addEventListener("click", effect);
-function effect() {
-  if (productsInfo.innerHTML !== "") {
-    if (dorpdownMenu.style.display == "block") {
-      dorpdownMenu.style.display = "none";
-    } else {
-      dorpdownMenu.style.display = "block";
-    }
-  }
-}
+
 
 function saveId(id) {
   localStorage.setItem("productId", id);
@@ -231,8 +203,8 @@ function hold(id) {
 
 // transport form home page to edit pange
 let editBtn = document.getElementById("edit");
-
-editBtn.addEventListener("click", transfar);
+ if(editBtn){
+  editBtn.addEventListener("click", transfar);
 function transfar(id) {
   let editpro = productDB.find((item) => item.id === id);
   if(editpro){
@@ -242,3 +214,15 @@ function transfar(id) {
     }, 700);
   }
 }
+
+
+ }
+
+
+
+
+
+
+
+let filtermyproduct=productDB.filter(item => item.isme ==="y")
+let myproducts=localStorage.setItem("myproduct",JSON.stringify(filtermyproduct))

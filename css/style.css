@@ -38,6 +38,11 @@ header nav ul {
 header nav ul li {
   min-width: 50px;
   display: inline-block;
+  text-transform: capitalize;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+
 }
 
 nav ul li a {
@@ -331,9 +336,10 @@ nav ul li a {
   margin-right: 20px;
   border-radius: 50%;
   color: white;
-  background-color: gray;
-  width: 20px;
-  height: 20px;
+  background-color: black;
+  width: 40px;
+  height: 30px;
+  line-height: 30px;
 }
 .search-by-size {
   width: 80%;
@@ -432,4 +438,39 @@ opacity: 0.8;
 }
 #edit:hover{
   opacity: 0.8;
+}
+#userimgpro{
+  position: relative;
+
+  top: 20px 
+  ;
+  height: 202px;
+  width: 202px;
+  background-position: center;
+  background-image: url(../img/newprofile.png);
+  cursor: pointer;
+}
+#userimgpro i {
+  position: relative;
+  cursor: pointer;
+ 
+}
+#userimgpro input[type="file"]{
+  position: absolute;
+  display: block;
+  opacity: 0;
+  top: 0;
+  left: 0;
+
+}
+#userinfo{
+  position: relative;
+  top: 40px;
+  background-color:rgb(253, 247, 239);
+  width: 200px;
+  line-height: 1.67;
+  height: 200px;
+  padding: 10px ;
+  color: #333;
+
 }

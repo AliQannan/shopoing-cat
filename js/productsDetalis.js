@@ -1,36 +1,5 @@
-let addediTem = localStorage.getItem("productsCart")
-  ? JSON.parse(localStorage.getItem("productsCart"))
-  : [];
-let productsInfo = document.querySelector(".products-info");
-productsInfo.style.color = "black";
-function newdraw() {
-  if (addediTem) {
-    addediTem.map(function (item) {
-      productsInfo.innerHTML += `<div class='hero-img'>
-        <img src='${item.imgUrl}'/>
-        <p id ='herop'>   ${item.title}</p>
-        <div class='icon-img'><i class= 'fa fa-check fw' >   </i><i onclick='deletItem(${item.id})' class= 'fa fa-remove fw remove' ></i></div>
-        </div> `;
-    });
-    let iconNumber = document.querySelector(".icon-number");
-    let allP = document.querySelectorAll(".products-info p");
-    iconNumber.innerHTML = allP.length;
-  }
-}
-newdraw(); //end
+ //end
 
-let dorpdownNew = document.querySelector(".dropdown");
-let dorpdownMenu = document.querySelector(".dropdown-menu");
-dorpdownNew.addEventListener("click", effect);
-function effect() {
-  if (productsInfo.innerHTML !== "") {
-    if (dorpdownMenu.style.display == "block") {
-      dorpdownMenu.style.display = "none";
-    } else {
-      dorpdownMenu.style.display = "block";
-    }
-  }
-}
 
 let productIds = localStorage.getItem("productId");
 let productDB = JSON.parse(localStorage.getItem("productsCart")) || productData;
